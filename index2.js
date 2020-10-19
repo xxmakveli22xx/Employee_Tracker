@@ -65,3 +65,13 @@ function viewEmployee(){
       userInput();
     });
 };
+
+function showRoles(){
+
+
+};
+
+function departments(){
+
+
+};
