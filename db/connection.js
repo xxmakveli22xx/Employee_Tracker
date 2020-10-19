@@ -8,9 +8,16 @@ const connection = mysql.createConnection({
     password: "Ryker$12",
     database: "employees" 
 
+    
+
  });
 
- connection.connect();
+ connection.connect(function(err) {
+    if (err) throw err;
+    console.log("connected as id " + connection.threadId);
+    userInput();
+  });
+
 
  connection.query = util.promisify(connection.query);
 
