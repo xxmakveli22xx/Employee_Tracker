@@ -35,17 +35,16 @@ async function userInput() {
         // Switch statement for user selection 
         switch (answer.choice) {
             case "Show all employees":
-                console.log("inside case");
                 viewEmployee();
                 break;
 
             case "Show employee roles":
                 console.log("inside case");
-                showRoles();
+                viewRoles();
                 break;
 
             case "Show the departments":
-                departments();
+                viewDepartments();
                 break;
 
        
@@ -60,7 +59,7 @@ async function userInput() {
 
 
 function viewEmployee(){
-    connection.query("SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary, CONCAT(manager.first_name, ' ', manager.last_name) AS manager FROM employee LEFT JOIN role on employee.role_id = role.id LEFT JOIN department on role.department_id = department.id LEFT JOIN employee manager on manager.id = employee.manager_id;", 
+    connection.query("SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary, CONCAT(manager.first_name, ' ', manager.last_name) AS manager FROM employee LEFT JOIN role on employee.role_id = role.id LEFT JOIN department on role.department_id = department.id LEFT JOIN employee manager on manager.id = employee.manager_id", 
     function (err, res) {
       console.table(res);
       if (err) throw err;
@@ -68,9 +67,9 @@ function viewEmployee(){
     });
 };
 
-function showRoles(){
+function viewRoles(){
     console.log("inside role");
-    connection.query("SELECT * from role",
+    connection.query("SELECT * FROM role",
     function(err, res) {
         if (err) throw err;
         
@@ -79,9 +78,8 @@ function showRoles(){
     });
 };
 
-function departments(){
-    connection.query("SELECT * FROM department;", 
-    function (err, res) {
+function viewDepartments(){
+    connection.query("SELECT * FROM department", function (err, res) {
       console.table(res);
       if (err) throw err;
       userInput();
