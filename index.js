@@ -35,10 +35,12 @@ async function userInput() {
         // Switch statement for user selection 
         switch (answer.choice) {
             case "Show all employees":
+                console.log("inside case");
                 viewEmployee();
                 break;
 
             case "Show employee roles":
+                console.log("inside case");
                 showRoles();
                 break;
 
@@ -67,13 +69,14 @@ function viewEmployee(){
 };
 
 function showRoles(){
-    connection.query("SELECT * FROM role;", 
-    function (err, res) {
-      console.table(res);
-      if (err) throw err;
-      userInput();
+    console.log("inside role");
+    connection.query("SELECT * from role",
+    function(err, res) {
+        if (err) throw err;
+        
+        console.table(res);
+        userInput();
     });
-
 };
 
 function departments(){
