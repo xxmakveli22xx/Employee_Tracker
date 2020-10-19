@@ -23,13 +23,14 @@ async function userInput() {
     inquirer.prompt({
         type: "list",
         name: "choice",
-        message: "What would you like to do?",
+        message: "What option would you like?",
         choices: [
             "Show all employees",
-            "View all roles",
-            "View all departments",
+            "Show all the roles",
+            "Show all departments",
             "Finished"
         ]
+        
     }).then(function(answer) {
         console.log(answer);
         // Switch statement for user selection 
@@ -38,12 +39,12 @@ async function userInput() {
                 viewEmployee();
                 break;
 
-            case "Show employee roles":
+            case "Show all the roles":
                 console.log("inside case");
                 viewRoles();
                 break;
 
-            case "Show the departments":
+            case "Show all departments":
                 viewDepartments();
                 break;
 
@@ -53,6 +54,7 @@ async function userInput() {
                 console.log("Done for right now!");
                 connection.end();
                 break;
+                
         }
     })
 };
@@ -69,16 +71,16 @@ function viewEmployee(){
 
 function viewRoles(){
     console.log("inside role");
-    connection.query("SELECT * FROM role",
-    function(err, res) {
+    connection.query("SELECT * FROM role", function(err, res) {
+        console.table(res);
         if (err) throw err;
         
-        console.table(res);
         userInput();
     });
 };
 
 function viewDepartments(){
+    console.log("in view dept");
     connection.query("SELECT * FROM department", function (err, res) {
       console.table(res);
       if (err) throw err;
