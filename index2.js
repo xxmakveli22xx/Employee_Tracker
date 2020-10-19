@@ -28,12 +28,7 @@ async function userInput() {
             "Show all employees",
             "View all roles",
             "View all departments",
-            "Add employee",
-            "Add role",
-            "Add department",
-            "Update employee role",
-            "Remove employee",
-            "Exit"
+            "Finished"
         ]
     }).then(function(answer) {
         console.log(answer);
@@ -51,27 +46,9 @@ async function userInput() {
                 departments();
                 break;
 
-          /*  case "Add employee":
-                addEmployee();
-                break;
+       
 
-           case "Add role":
-                addRole();
-                break;
-
-            case "Add department":
-                addDepartment();
-                break;
-
-            case "Update employee role":
-                updateRole();
-                break;
-
-            case "Remove employee":
-                removeEmployee();
-                break;
-             */
-            case "Exit":
+            case "Finished":
                 console.log("Done for right now!");
                 connection.end();
                 break;
